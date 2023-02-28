@@ -1,0 +1,11 @@
+.mainBox {
+  margin: 0 auto 0 auto;
+  display: flex;
+  width: 522px;
+  height: 86px;
+  flex-direction: row;
+}
+
+.input {
+  margin-right: 30px;
+}
