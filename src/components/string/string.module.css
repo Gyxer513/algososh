@@ -9,3 +9,8 @@
 .input {
   margin-right: 30px;
 }
+.list {
+  text-decoration: none;
+  display: flex;
+  margin: 0 auto 0 auto;
+}
