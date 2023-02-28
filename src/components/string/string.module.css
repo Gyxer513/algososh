@@ -7,10 +7,15 @@
 }
 
 .input {
-  margin-right: 30px;
+  margin-right: 12px;
 }
 .list {
   text-decoration: none;
   display: flex;
-  margin: 0 auto 0 auto;
+  justify-content: center;
+  gap: 16px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
+

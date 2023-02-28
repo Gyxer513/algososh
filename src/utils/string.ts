@@ -1,6 +1,7 @@
 import { ElementStates } from "../types/element-states";
 import { swap } from "./utils";
 import { IItemArray } from "../types/utils";
+import { DELAY_IN_MS } from "../constants/delays";
 
 export const reverseArray = async (
     string: Array<IItemArray>,
@@ -15,14 +16,14 @@ export const reverseArray = async (
       string[end].state = ElementStates.Changing;
       stringArray([...string]);
   
-      await new Promise((res) => setTimeout(res, 2000));
+      await new Promise((res) => setTimeout(res, DELAY_IN_MS));
   
       string[start].state = ElementStates.Modified;
       string[end].state = ElementStates.Modified;
       swap(string, start, end);
       stringArray([...string]);
   
-      await new Promise((res) => setTimeout(res, 2000));
+      await new Promise((res) => setTimeout(res, DELAY_IN_MS));
   
       start++;
       end--;
