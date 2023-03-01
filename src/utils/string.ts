@@ -4,28 +4,28 @@ import { IItemArray } from "../types/utils";
 import { DELAY_IN_MS } from "../constants/delays";
 
 export const reverseArray = async (
-    string: Array<IItemArray>,
-    stringArray: Function,
-    start: number = 0,
-    end: number = string.length - 1
-  ) => {
-    const mid = string.length / 2;
-  
-    while (start < mid) {
-      string[start].state = ElementStates.Changing;
-      string[end].state = ElementStates.Changing;
-      stringArray([...string]);
-  
-      await new Promise((res) => setTimeout(res, DELAY_IN_MS));
-  
-      string[start].state = ElementStates.Modified;
-      string[end].state = ElementStates.Modified;
-      swap(string, start, end);
-      stringArray([...string]);
-  
-      await new Promise((res) => setTimeout(res, DELAY_IN_MS));
-  
-      start++;
-      end--;
-    }
-  };
+  string: Array<IItemArray>,
+  stringArray: Function,
+  start: number = 0,
+  end: number = string.length - 1
+) => {
+  const mid = string.length / 2;
+
+  while (start < mid) {
+    string[start].state = ElementStates.Changing;
+    string[end].state = ElementStates.Changing;
+    stringArray([...string]);
+
+    await new Promise((res) => setTimeout(res, DELAY_IN_MS));
+
+    string[start].state = ElementStates.Modified;
+    string[end].state = ElementStates.Modified;
+    swap(string, start, end);
+    stringArray([...string]);
+
+    await new Promise((res) => setTimeout(res, DELAY_IN_MS));
+
+    start++;
+    end--;
+  }
+};
