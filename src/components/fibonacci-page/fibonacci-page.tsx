@@ -5,7 +5,6 @@ import { Input } from "../ui/input/input";
 import { Button } from "../ui/button/button";
 import { Circle } from "../ui/circle/circle";
 import { fib } from "../../utils/fibonacci";
-import { DELAY_IN_MS } from "../../constants/delays";
 
 export const FibonacciPage: React.FC = () => {
   const [disabled, setDisabled] = React.useState<boolean>(true);
@@ -20,10 +19,7 @@ export const FibonacciPage: React.FC = () => {
 
   const handlerClick = async () => {
     setLoader(true);
-    for (let i = 0; i <= fib(inputValue).length; i++ ) {
-      await new Promise((res) => setTimeout(res, DELAY_IN_MS));
-      setNumbersArray(fib(inputValue).slice(0, i))
-    }
+    await fib(inputValue, setNumbersArray)
     setLoader(false);
   };
 
