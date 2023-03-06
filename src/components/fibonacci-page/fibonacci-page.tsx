@@ -13,19 +13,21 @@ export const FibonacciPage: React.FC = () => {
   const [numbersArray, setNumbersArray] = React.useState<Array<number>>([]);
 
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    +e.currentTarget.value > 0 && +e.currentTarget.value <= 19 ? setDisabled(false) : setDisabled(true);
-    setInputValue(+e.currentTarget.value)
+    +e.currentTarget.value > 0 && +e.currentTarget.value <= 19
+      ? setDisabled(false)
+      : setDisabled(true);
+    setInputValue(+e.currentTarget.value);
   };
 
   const handlerClick = async () => {
     setLoader(true);
-    await fib(inputValue, setNumbersArray)
+    await fib(inputValue, setNumbersArray);
     setLoader(false);
   };
 
   return (
     <SolutionLayout title="Последовательность Фибоначчи">
-     <section className={styles.mainBox}>
+      <section className={styles.mainBox}>
         <Input
           max={19}
           type={"number"}
@@ -43,12 +45,12 @@ export const FibonacciPage: React.FC = () => {
       </section>
       <ul className={styles.list}>
         {numbersArray?.map((item, index) => {
-            return (
-              <li className={styles.listItem} key={index}>
-                <Circle letter={`${item}`} /> {index}
-              </li>
-            );
-          })}
+          return (
+            <li className={styles.listItem} key={index}>
+              <Circle letter={`${item}`} /> {index}
+            </li>
+          );
+        })}
       </ul>
     </SolutionLayout>
   );

@@ -1,7 +1,10 @@
-import { IItemArray } from "../types/utils";
+import { IItemArray, ISortArray } from "../types/utils";
+
+export const timer = (mlsec: number) =>
+  new Promise((res) => setTimeout(res, mlsec));
 
 export const swap = (
-  arr: Array<IItemArray>,
+  arr: Array<IItemArray | ISortArray>,
   firstIndex: number,
   secondIndex: number
 ): void => {
@@ -9,3 +12,4 @@ export const swap = (
   arr[firstIndex] = arr[secondIndex];
   arr[secondIndex] = temp;
 };
+
