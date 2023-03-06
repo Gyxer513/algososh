@@ -1,3 +1,16 @@
 .queueContainer {
-    display: flex;
+  display: flex;
+  margin: 0 100px 0 100px;
+  gap: 20px;
+}
+
+.list {
+  margin: 50px 50px 0 50px;
+  text-decoration: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  list-style-type: none;
+  padding: 0;
 }

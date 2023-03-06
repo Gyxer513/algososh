@@ -1,3 +1,4 @@
+import { ElementStates } from "../types/element-states";
 interface IQueue<T> {
   enqueue: (item: T) => void;
   dequeue: () => void;
@@ -8,7 +9,9 @@ interface IQueue<T> {
   getSize: () => number;
   peak: () => T | null;
 }
-export class Queue<T> implements IQueue<T> {
+
+
+ class Queue<T> implements IQueue<T> {
   private container: (T | null)[] = [];
   private head = 0;
   private tail = 0;
@@ -74,3 +77,11 @@ export class Queue<T> implements IQueue<T> {
     
   };
 }
+
+export const queue = new Queue<string>(7)
+export const defaultArray = Array.from({ length: 7 }, () => ({
+  item: "",
+  state: ElementStates.Default,
+  head: false,
+  tail: false,
+}))

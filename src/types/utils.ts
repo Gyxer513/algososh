@@ -24,4 +24,6 @@ export interface IStackElement {
 export interface IQueueElement {
   item: string;
   state: ElementStates;
-}
+  head?: boolean;
+  tail?: boolean;
+} 

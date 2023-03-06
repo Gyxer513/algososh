@@ -4,7 +4,7 @@ import styles from "./stack.module.css";
 import { Input } from "../ui/input/input";
 import { Button } from "../ui/button/button";
 import { Circle } from "../ui/circle/circle";
-import { Stack } from "../../utils/stack";
+import { stack } from "../../utils/stack";
 import { timer } from "../../utils/utils";
 import { IStackElement } from "../../types/utils";
 import { ElementStates } from "../../types/element-states";
@@ -18,8 +18,6 @@ export const StackPage: React.FC = () => {
   const handlerChangeInput = (e: React.SyntheticEvent<HTMLInputElement>) => {
     setInputValue(e.currentTarget.value);
   };
-
-  const stack = new Stack<string>();
 
   const pushItem = async () => {
     setLoader(true);
