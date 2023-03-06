@@ -6,12 +6,10 @@ interface IQueue<T> {
   getTail: () => number;
   getHead: () => number;
   isFull: () => boolean;
-  getSize: () => number;
   peak: () => T | null;
 }
 
-
- class Queue<T> implements IQueue<T> {
+class Queue<T> implements IQueue<T> {
   private container: (T | null)[] = [];
   private head = 0;
   private tail = 0;
@@ -63,8 +61,6 @@ interface IQueue<T> {
     return this.head;
   };
 
-  getSize = () => this.container.length;
-
   isEmpty = () => this.length === 0;
 
   isFull = () => this.tail >= this.size - 1;
@@ -74,14 +70,13 @@ interface IQueue<T> {
     this.tail = 0;
     this.container = Array(this.size).fill(null);
     this.length = 0;
-    
   };
 }
 
-export const queue = new Queue<string>(7)
+export const queue = new Queue<string>(7);
 export const defaultArray = Array.from({ length: 7 }, () => ({
   item: "",
   state: ElementStates.Default,
   head: false,
   tail: false,
-}))
+}));

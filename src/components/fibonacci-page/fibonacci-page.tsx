@@ -30,6 +30,7 @@ export const FibonacciPage: React.FC = () => {
       <section className={styles.mainBox}>
         <Input
           max={19}
+          placeholder="Введите число"
           type={"number"}
           isLimitText={true}
           onChange={onChangeValue}
@@ -37,7 +38,7 @@ export const FibonacciPage: React.FC = () => {
         <div className={styles.input}></div>
         <Button
           onClick={handlerClick}
-          text="Развернуть"
+          text="Показать"
           linkedList="small"
           isLoader={loader}
           disabled={disabled}

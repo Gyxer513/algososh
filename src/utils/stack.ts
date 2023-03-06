@@ -21,5 +21,4 @@ export class Stack<T> implements IStack<T> {
   clear = () => (this.container = []);
 }
 
-
-export   const stack = new Stack<string>();
+export const stack = new Stack<string>();

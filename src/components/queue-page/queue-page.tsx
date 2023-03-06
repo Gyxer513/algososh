@@ -13,6 +13,7 @@ import { SHORT_DELAY_IN_MS } from "../../constants/delays";
 export const QueuePage: React.FC = () => {
   const [loader, setLoader] = React.useState<boolean>(false);
   const [inputValue, setInputValue] = React.useState<string>("");
+  const [disabled, setDisabled] = React.useState<boolean>(true);
   const [array, setArray] = React.useState<Array<IQueueElement>>(defaultArray);
 
   const handlerChangeInput = (e: React.SyntheticEvent<HTMLInputElement>) => {
@@ -35,9 +36,11 @@ export const QueuePage: React.FC = () => {
     await timer(SHORT_DELAY_IN_MS);
     array[queue.getTail()].state = ElementStates.Default;
     setArray([...array]);
+    setDisabled(false)
     setLoader(false);
   };
   const clearQueue = async () => {
+    setLoader(true);
     queue.clear();
     await timer(SHORT_DELAY_IN_MS);
     setArray([
@@ -48,12 +51,16 @@ export const QueuePage: React.FC = () => {
         tail: false,
       })),
     ]);
+    setLoader(false);
+    setDisabled(true)
     setInputValue("");
   };
   const removeItem = async () => {
+    setLoader(true);
     if (queue.getHead() === queue.getTail()) {
       array[queue.getHead()].state = ElementStates.Changing;
       clearQueue();
+      setDisabled(true);
       await timer(SHORT_DELAY_IN_MS);
       array[queue.getHead()].state = ElementStates.Default;
       setArray([
@@ -74,7 +81,8 @@ export const QueuePage: React.FC = () => {
       setArray([...array]);
       await timer(SHORT_DELAY_IN_MS);
       setArray([...array]);
-      console.log(array);
+      array[queue.getHead() - 1].state = ElementStates.Default;
+      setLoader(false);
     }
   };
 
@@ -96,13 +104,13 @@ export const QueuePage: React.FC = () => {
         />
         <Button
           text="Удалить"
-          disabled={!array.length}
+          disabled={disabled}
           onClick={removeItem}
           isLoader={loader}
         />
         <Button
           text="Очистить"
-          disabled={!array.length}
+          disabled={disabled}
           onClick={clearQueue}
           isLoader={loader}
         />

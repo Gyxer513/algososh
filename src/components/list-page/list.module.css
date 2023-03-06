@@ -1,0 +1,21 @@
+.listContainer {
+    display: flex;
+    margin: 20px 350px 0 250px;
+    gap: 10px;
+
+  }
+  
+  .list {
+    margin: 50px 50px 0 50px;
+    text-decoration: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .input {
+    max-width: 204px;
+  }
