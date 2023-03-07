@@ -12,6 +12,7 @@ import { bubbleSort, selectSort } from "../../utils/sort";
 
 export const SortingPage: React.FC = () => {
   const [loader, setLoader] = React.useState<boolean>(false);
+  const [disabled, setDisabled] = React.useState<boolean>(false);
   const [radioValue, setRadioValue] = React.useState("Select");
   const [sortMethod, setSortMethod] = React.useState<Direction>();
   const [array, setArray] = React.useState<Array<IItemArray>>([]);
@@ -31,6 +32,7 @@ export const SortingPage: React.FC = () => {
 
   const handleSortingMethod = async (sortMethod: Direction) => {
     setLoader(true);
+    setDisabled(true);
     setSortMethod(sortMethod);
     if (radioValue === "Select") {
       await selectSort(array, sortMethod, setArray);
@@ -38,6 +40,7 @@ export const SortingPage: React.FC = () => {
       await bubbleSort(array, sortMethod, setArray);
     }
     setLoader(false);
+    setDisabled(false);
   };
 
   const OnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,14 +69,20 @@ export const SortingPage: React.FC = () => {
           text="По возрастанию"
           isLoader={loader && sortMethod === Direction.Ascending}
           onClick={() => handleSortingMethod(Direction.Ascending)}
+          disabled={loader}
         />
         <Button
           sorting={Direction.Descending}
           text="По убыванию"
           isLoader={loader && sortMethod === Direction.Descending}
+          disabled={loader}
           onClick={() => handleSortingMethod(Direction.Descending)}
         />
-        <Button text="Новый массив" isLoader={loader} onClick={generateArray} />
+        <Button
+          text="Новый массив"
+          onClick={generateArray}
+          disabled={disabled}
+        />
       </section>
       <div className={styles.columnBox}>
         {array &&

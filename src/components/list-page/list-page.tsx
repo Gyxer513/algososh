@@ -109,9 +109,9 @@ export const ListPage: React.FC = () => {
   const deleteTail = async () => {
     setLoader(true);
     list.deleteTail();
-    setCurrentElement("DELL");
+    setCurrentElement(numbersArray[list.toArray().length].item);
     setCurrentLocation(Location.Bottom);
-    setCurrentIndex(list.toArray().length - 1);
+    setCurrentIndex(list.toArray().length);
     numbersArray[list.toArray().length] = {
       ...numbersArray[list.toArray().length - 1],
       state: ElementStates.Changing,
@@ -151,7 +151,7 @@ export const ListPage: React.FC = () => {
     setLoader(true);
     list.deleteByIndex(+indexValue);
     setCurrentIndex(+indexValue);
-    setCurrentElement("DELL");
+    setCurrentElement(numbersArray[+indexValue].item);
     setCurrentLocation(Location.Bottom);
     numbersArray[+indexValue] = {
       ...numbersArray[+indexValue],
@@ -239,7 +239,7 @@ export const ListPage: React.FC = () => {
           <Button
             text="Добавить по индексу"
             extraClass={styles.button}
-            disabled={!indexValue || !inputValue}
+            disabled={!indexValue || !inputValue || !(numbersArray.length + 1 > +indexValue)}
             onClick={addByIndex}
           />
           <Button

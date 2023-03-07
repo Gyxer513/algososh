@@ -9,9 +9,10 @@ import { timer } from "../../utils/utils";
 import { IStackElement } from "../../types/utils";
 import { ElementStates } from "../../types/element-states";
 import { SHORT_DELAY_IN_MS } from "../../constants/delays";
+import { MAX_LENGTH } from "../../constants/stack";
 
 export const StackPage: React.FC = () => {
-  const [loader, setLoader] = React.useState<boolean>(false);
+  const [activaBtn, setActivaBtn] = React.useState<string>("");
   const [inputValue, setInputValue] = React.useState<string>("");
   const [array, setArray] = React.useState<IStackElement[]>([]);
 
@@ -20,7 +21,8 @@ export const StackPage: React.FC = () => {
   };
 
   const pushItem = async () => {
-    setLoader(true);
+    setActivaBtn("push");
+
     stack.push(inputValue);
     array.push({ item: stack.peak(), state: ElementStates.Changing });
     setInputValue("");
@@ -30,11 +32,12 @@ export const StackPage: React.FC = () => {
 
     array[array.length - 1].state = ElementStates.Default;
     setArray([...array]);
-    setLoader(false);
+
+    setActivaBtn("");
   };
 
   const removeItem = async () => {
-    setLoader(true);
+    setActivaBtn("del");
     stack.pop();
     array[array.length - 1].state = ElementStates.Changing;
     setArray([...array]);
@@ -43,16 +46,16 @@ export const StackPage: React.FC = () => {
 
     array.pop();
     setArray([...array]);
-    setLoader(false);
+    setActivaBtn("");
   };
 
   const clearStack = async () => {
-    setLoader(true);
+    setActivaBtn("clear");
     stack.clear();
     await timer(SHORT_DELAY_IN_MS);
     setArray([]);
-    setLoader(false);
     setInputValue("");
+    setActivaBtn("");
   };
 
   return (
@@ -60,7 +63,7 @@ export const StackPage: React.FC = () => {
       <section className={styles.stackContainer}>
         <Input
           placeholder="Введите текст"
-          maxLength={4}
+          maxLength={MAX_LENGTH}
           isLimitText={true}
           onChange={handlerChangeInput}
           value={inputValue}
@@ -68,20 +71,24 @@ export const StackPage: React.FC = () => {
         <Button
           text="Добавить"
           onClick={pushItem}
-          disabled={inputValue == ""}
-          isLoader={loader}
+          disabled={
+            inputValue == "" || activaBtn == "del" || activaBtn == "clear"
+          }
+          isLoader={activaBtn == "push"}
         />
         <Button
           text="Удалить"
-          disabled={!array.length}
+          disabled={
+            !array.length || activaBtn == "push" || activaBtn == "clear"
+          }
           onClick={removeItem}
-          isLoader={loader}
+          isLoader={activaBtn == "del"}
         />
         <Button
           text="Очистить"
-          disabled={!array.length}
+          disabled={!array.length || activaBtn == "del" || activaBtn == "push"}
           onClick={clearStack}
-          isLoader={loader}
+          isLoader={activaBtn == "clear"}
         />
       </section>
       <ul className={styles.list}>

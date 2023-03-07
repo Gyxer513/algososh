@@ -9,11 +9,12 @@ import { queue, defaultArray } from "../../utils/queue";
 import { IQueueElement } from "../../types/utils";
 import { ElementStates } from "../../types/element-states";
 import { SHORT_DELAY_IN_MS } from "../../constants/delays";
+import { ARRAY_LENGTH } from "../../constants/quenue";
+import {HEAD, TAIL} from "../../constants/element-captions";
 
 export const QueuePage: React.FC = () => {
-  const [loader, setLoader] = React.useState<boolean>(false);
+  const [activaBtn, setActivaBtn] = React.useState<string>("");
   const [inputValue, setInputValue] = React.useState<string>("");
-  const [disabled, setDisabled] = React.useState<boolean>(true);
   const [array, setArray] = React.useState<Array<IQueueElement>>(defaultArray);
 
   const handlerChangeInput = (e: React.SyntheticEvent<HTMLInputElement>) => {
@@ -21,7 +22,7 @@ export const QueuePage: React.FC = () => {
   };
 
   const addItem = async () => {
-    setLoader(true);
+    setActivaBtn("push");
     queue.enqueue(inputValue);
     if (queue.getTail() > 0) {
       array[queue.getTail() - 1].tail = false;
@@ -36,31 +37,30 @@ export const QueuePage: React.FC = () => {
     await timer(SHORT_DELAY_IN_MS);
     array[queue.getTail()].state = ElementStates.Default;
     setArray([...array]);
-    setDisabled(false)
-    setLoader(false);
+    setActivaBtn("");
   };
   const clearQueue = async () => {
-    setLoader(true);
+    setActivaBtn("clear");
     queue.clear();
     await timer(SHORT_DELAY_IN_MS);
     setArray([
-      ...Array.from({ length: 7 }, () => ({
+      ...Array.from({ length: ARRAY_LENGTH }, () => ({
         item: "",
         state: ElementStates.Default,
         head: false,
         tail: false,
       })),
     ]);
-    setLoader(false);
-    setDisabled(true)
+
+    setActivaBtn("");
     setInputValue("");
   };
   const removeItem = async () => {
-    setLoader(true);
+    setActivaBtn("del");
     if (queue.getHead() === queue.getTail()) {
       array[queue.getHead()].state = ElementStates.Changing;
       clearQueue();
-      setDisabled(true);
+
       await timer(SHORT_DELAY_IN_MS);
       array[queue.getHead()].state = ElementStates.Default;
       setArray([
@@ -82,7 +82,7 @@ export const QueuePage: React.FC = () => {
       await timer(SHORT_DELAY_IN_MS);
       setArray([...array]);
       array[queue.getHead() - 1].state = ElementStates.Default;
-      setLoader(false);
+      setActivaBtn("");
     }
   };
 
@@ -99,20 +99,20 @@ export const QueuePage: React.FC = () => {
         <Button
           text="Добавить"
           onClick={addItem}
-          disabled={inputValue == ""}
-          isLoader={loader}
+          disabled={inputValue == "" || activaBtn == "del" || activaBtn == "clear"}
+          isLoader={activaBtn == "push"}
         />
         <Button
           text="Удалить"
-          disabled={disabled}
+          disabled={activaBtn == "push" || activaBtn == "clear"}
           onClick={removeItem}
-          isLoader={loader}
+          isLoader={activaBtn == "del"}
         />
         <Button
           text="Очистить"
-          disabled={disabled}
+          disabled={activaBtn == "del" || activaBtn == "push"}
           onClick={clearQueue}
-          isLoader={loader}
+          isLoader={activaBtn == "clear"}
         />
       </section>
 
@@ -125,10 +125,10 @@ export const QueuePage: React.FC = () => {
                 state={item.state}
                 index={index}
                 head={
-                  index === queue.getHead() && !queue.isEmpty() ? "head" : ""
+                  index === queue.getHead() && !queue.isEmpty() ? HEAD : ""
                 }
                 tail={
-                  index === queue.getTail() && !queue.isEmpty() ? "tail" : ""
+                  index === queue.getTail() && !queue.isEmpty() ? TAIL : ""
                 }
               />
             </li>

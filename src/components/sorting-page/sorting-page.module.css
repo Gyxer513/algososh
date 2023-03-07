@@ -1,8 +1,9 @@
 .sortContainer {
   display: flex;
-  gap: 15px;
-  justify-content: space-around;
+  gap: 50px;
+  justify-content: center;
   align-items: center;
+  margin: 0 150px 0 150px;
 }
 
 .columnBox {

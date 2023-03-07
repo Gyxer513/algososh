@@ -39,7 +39,7 @@ export class LinkedList<T> implements ILinkedList<T> {
     this.tail = null;
     this.length = 0;
     initialState?.forEach((el) => {
-      this.addByIndex(el, 0);
+      this.append(el);
     });
   }
   /* Добавляем элемент в конец*/
