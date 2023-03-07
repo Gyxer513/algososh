@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  margin: 0 150px 0 200px;
+  margin: 0 150px 0 400px;
 }
 .listContainer {
   display: flex;
@@ -19,7 +19,11 @@
   list-style-type: none;
   padding: 0;
 }
-
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 .input {
   max-width: 204px;
 }

@@ -1,4 +1,5 @@
 import { IItemArray } from "../types/utils";
+import { ElementStates } from "../types/element-states";
 
 export type TListElement = IItemArray & {
   head?: boolean;
@@ -21,13 +22,14 @@ export class LinkedListNode<T> {
 interface ILinkedList<T> {
   append: (element: T) => void;
   prepend: (value: T) => void;
-  insertAt: (element: T, position: number) => void;
+  addByIndex: (element: T, position: number) => void;
   getNodeByIndex: (index: number) => T | null;
   deleteByIndex: (index: number) => void;
   deleteHead: () => void;
   deleteTail: () => void;
   getSize: () => number;
 }
+
 export class LinkedList<T> implements ILinkedList<T> {
   private head: LinkedListNode<T> | null;
   private length: number;
@@ -37,25 +39,23 @@ export class LinkedList<T> implements ILinkedList<T> {
     this.tail = null;
     this.length = 0;
     initialState?.forEach((el) => {
-      this.insertAt(el, 0);
+      this.addByIndex(el, 0);
     });
   }
-/* Добавляем элемент в конец*/
-  append = (element: T) => {
-    const node = new LinkedListNode(element);
-
+  /* Добавляем элемент в конец*/
+  append = (value: T) => {
+    const node = new LinkedListNode(value);
     if (!this.head || !this.tail) {
       this.head = node;
       this.tail = node;
       this.length++;
-
       return this;
     }
     this.tail.next = node;
     this.tail = node;
     this.length++;
   };
-/* Добавляем элемент в начало*/
+  /* Добавляем элемент в начало*/
   prepend = (value: T) => {
     let node = new LinkedListNode(value);
 
@@ -67,7 +67,7 @@ export class LinkedList<T> implements ILinkedList<T> {
     this.length++;
   };
 
-  insertAt = (element: T, index: number) => {
+  addByIndex = (element: T, index: number) => {
     if (index < 0 || index > this.getSize()) {
       throw new Error("Введите действительный индекс");
     } else {
@@ -173,5 +173,22 @@ export class LinkedList<T> implements ILinkedList<T> {
     return currentNode ? currentNode.value : null;
   };
 
+  toArray() {
+    let curr = this.head;
+    let res: T[] = [];
+    while (curr) {
+      res.push(curr.value);
+      curr = curr.next;
+    }
+    return [...res].map((item) => ({
+      item: item,
+      state: ElementStates.Default,
+    }));
+  }
+
   getSize = () => this.length;
 }
+
+export const defaultArray = ["0", "34", "8", "1"];
+
+export const list = new LinkedList<string>(defaultArray);
