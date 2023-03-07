@@ -30,32 +30,32 @@ interface ILinkedList<T> {
 }
 export class LinkedList<T> implements ILinkedList<T> {
   private head: LinkedListNode<T> | null;
-  private size: number;
+  private length: number;
   private tail: LinkedListNode<T> | null;
   constructor(initialState?: T[]) {
     this.head = null;
     this.tail = null;
-    this.size = 0;
+    this.length = 0;
     initialState?.forEach((el) => {
       this.insertAt(el, 0);
     });
   }
-
+/* Добавляем элемент в конец*/
   append = (element: T) => {
     const node = new LinkedListNode(element);
 
     if (!this.head || !this.tail) {
       this.head = node;
       this.tail = node;
-      this.size++;
+      this.length++;
 
       return this;
     }
     this.tail.next = node;
     this.tail = node;
-    this.size++;
+    this.length++;
   };
-
+/* Добавляем элемент в начало*/
   prepend = (value: T) => {
     let node = new LinkedListNode(value);
 
@@ -64,7 +64,7 @@ export class LinkedList<T> implements ILinkedList<T> {
     }
     node.next = this.head;
     this.head = node;
-    this.size++;
+    this.length++;
   };
 
   insertAt = (element: T, index: number) => {
@@ -95,12 +95,12 @@ export class LinkedList<T> implements ILinkedList<T> {
         }
       }
 
-      this.size++;
+      this.length++;
     }
   };
 
   getNodeByIndex = (index: number) => {
-    if (index < 0 || index > this.size) {
+    if (index < 0 || index > this.length) {
       return null;
     }
     let current = this.head;
@@ -114,7 +114,7 @@ export class LinkedList<T> implements ILinkedList<T> {
   };
 
   deleteByIndex = (index: number) => {
-    if (index < 0 || index > this.size) {
+    if (index < 0 || index > this.length) {
       return null;
     }
     let current = this.head;
@@ -135,7 +135,7 @@ export class LinkedList<T> implements ILinkedList<T> {
         previous.next = current.next;
       }
     }
-    this.size--;
+    this.length--;
     return current ? current.value : null;
   };
 
@@ -151,27 +151,27 @@ export class LinkedList<T> implements ILinkedList<T> {
       this.head = null;
       this.tail = null;
     }
-    this.size--;
+    this.length--;
     return deletedHead ? deletedHead.value : null;
   };
 
   deleteTail = () => {
-    if (this.size === 0) {
+    if (this.length === 0) {
       return null;
     }
 
     let currentNode = this.head;
     let prev = null;
     let currentIndex = 0;
-    while (currentIndex < this.size - 1 && currentNode) {
+    while (currentIndex < this.length - 1 && currentNode) {
       prev = currentNode;
       currentNode = currentNode.next;
       currentIndex++;
     }
     if (prev && currentNode) prev.next = currentNode.next;
-    this.size--;
+    this.length--;
     return currentNode ? currentNode.value : null;
   };
 
-  getSize = () => this.size;
+  getSize = () => this.length;
 }
