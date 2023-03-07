@@ -5,6 +5,7 @@ import { Input } from "../ui/input/input";
 import { Button } from "../ui/button/button";
 import { Circle } from "../ui/circle/circle";
 import { fib } from "../../utils/fibonacci";
+import { MIN_VALUE, MAX_VALUE } from "../../constants/fiboncci";
 
 export const FibonacciPage: React.FC = () => {
   const [disabled, setDisabled] = React.useState<boolean>(true);
@@ -13,7 +14,7 @@ export const FibonacciPage: React.FC = () => {
   const [numbersArray, setNumbersArray] = React.useState<Array<number>>([]);
 
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    +e.currentTarget.value > 0 && +e.currentTarget.value <= 19
+    +e.currentTarget.value > MIN_VALUE && +e.currentTarget.value <= MAX_VALUE
       ? setDisabled(false)
       : setDisabled(true);
     setInputValue(+e.currentTarget.value);
@@ -29,12 +30,12 @@ export const FibonacciPage: React.FC = () => {
     <SolutionLayout title="Последовательность Фибоначчи">
       <section className={styles.mainBox}>
         <Input
-          max={19}
+          max={MAX_VALUE}
           placeholder="Введите число"
           type={"number"}
           isLimitText={true}
           onChange={onChangeValue}
-        ></Input>
+        />
         <div className={styles.input}></div>
         <Button
           onClick={handlerClick}

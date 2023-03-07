@@ -11,6 +11,8 @@ import { Location } from "../../types/utils";
 import { timer } from "../../utils/utils";
 import { SHORT_DELAY_IN_MS } from "../../constants/delays";
 import { IListElement } from "../../types/utils";
+import { MAX_LENGTH } from "../../constants/list";
+
 
 export const ListPage: React.FC = () => {
   const [disabled, setDisabled] = React.useState<boolean>(false);
@@ -59,7 +61,7 @@ export const ListPage: React.FC = () => {
   const deleteHead = async () => {
     setLoader(true);
     list.deleteHead();
-    setCurrentElement("DELL");
+    setCurrentElement(numbersArray[0].item);
     setCurrentLocation(Location.Bottom);
     numbersArray[0] = {
       ...numbersArray[0],
@@ -85,7 +87,7 @@ export const ListPage: React.FC = () => {
     setLoader(true);
 
     setCurrentElement(inputValue);
-    setCurrentIndex(list.toArray().length - 1);
+    setCurrentIndex(list.toArray().length);
     setCurrentLocation(Location.Top);
     numbersArray[list.toArray().length] = {
       ...numbersArray[list.toArray().length],
@@ -109,9 +111,9 @@ export const ListPage: React.FC = () => {
     list.deleteTail();
     setCurrentElement("DELL");
     setCurrentLocation(Location.Bottom);
-    setCurrentIndex(list.toArray().length);
+    setCurrentIndex(list.toArray().length - 1);
     numbersArray[list.toArray().length] = {
-      ...numbersArray[list.toArray().length],
+      ...numbersArray[list.toArray().length - 1],
       state: ElementStates.Changing,
     };
 
@@ -197,7 +199,7 @@ export const ListPage: React.FC = () => {
             onChange={handlerChangeInput}
             extraClass={styles.input}
             isLimitText={true}
-            maxLength={4}
+            maxLength={MAX_LENGTH}
             placeholder={"Введите значение"}
           />
           <Button
