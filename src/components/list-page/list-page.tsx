@@ -36,7 +36,7 @@ export const ListPage: React.FC = () => {
   };
 
   const addHead = async () => {
-    setActivaBtn("add")
+    setActivaBtn("add");
     setLoader(true);
 
     list.prepend(inputValue);
@@ -57,12 +57,12 @@ export const ListPage: React.FC = () => {
     };
     setCurrentLocation(Location.None);
     setInputValue("");
-    setActivaBtn("")
+    setActivaBtn("");
     setLoader(false);
   };
 
   const deleteHead = async () => {
-    setActivaBtn("delHead")
+    setActivaBtn("delHead");
     setLoader(true);
     list.deleteHead();
     setCurrentElement(numbersArray[0].item);
@@ -85,11 +85,11 @@ export const ListPage: React.FC = () => {
     if (list.toArray().length === 0) {
       setDisabled(true);
     }
-    setActivaBtn("")
+    setActivaBtn("");
   };
 
   const addTail = async () => {
-    setActivaBtn("addTail")
+    setActivaBtn("addTail");
 
     setCurrentElement(inputValue);
     setCurrentIndex(list.toArray().length);
@@ -108,12 +108,12 @@ export const ListPage: React.FC = () => {
     };
     setCurrentLocation(Location.None);
     setInputValue("");
-    setActivaBtn("")
+    setActivaBtn("");
     setLoader(false);
   };
 
   const deleteTail = async () => {
-    setActivaBtn("delTail")
+    setActivaBtn("delTail");
     list.deleteTail();
     setCurrentElement(numbersArray[list.toArray().length].item);
     setCurrentLocation(Location.Bottom);
@@ -130,11 +130,10 @@ export const ListPage: React.FC = () => {
       ...numbersArray[0],
       state: ElementStates.Modified,
     };
-    setActivaBtn("")
+    setActivaBtn("");
     setCurrentLocation(Location.None);
     if (list.toArray().length === 0) {
       setDisabled(true);
-      
     }
   };
   const showHead = (index: number) => {
@@ -179,12 +178,11 @@ export const ListPage: React.FC = () => {
     setDisabled(true);
     setLoader(true);
     for (let i = 0; i <= +indexValue; i++) {
-      
       numbersArray[i] = {
         ...numbersArray[i],
         state: ElementStates.Changing,
       };
-      setNumbersArray(numbersArray);
+      setNumbersArray([...numbersArray]);
       await timer(SHORT_DELAY_IN_MS);
     }
     await timer(SHORT_DELAY_IN_MS);

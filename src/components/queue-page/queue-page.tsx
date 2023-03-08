@@ -10,7 +10,7 @@ import { IQueueElement } from "../../types/utils";
 import { ElementStates } from "../../types/element-states";
 import { SHORT_DELAY_IN_MS } from "../../constants/delays";
 import { ARRAY_LENGTH } from "../../constants/quenue";
-import {HEAD, TAIL} from "../../constants/element-captions";
+import { HEAD, TAIL } from "../../constants/element-captions";
 
 export const QueuePage: React.FC = () => {
   const [activaBtn, setActivaBtn] = React.useState<string>("");
@@ -99,7 +99,9 @@ export const QueuePage: React.FC = () => {
         <Button
           text="Добавить"
           onClick={addItem}
-          disabled={inputValue == "" || activaBtn == "del" || activaBtn == "clear"}
+          disabled={
+            inputValue == "" || activaBtn == "del" || activaBtn == "clear"
+          }
           isLoader={activaBtn == "push"}
         />
         <Button
@@ -124,12 +126,8 @@ export const QueuePage: React.FC = () => {
                 letter={`${item.item}`}
                 state={item.state}
                 index={index}
-                head={
-                  index === queue.getHead() && !queue.isEmpty() ? HEAD : ""
-                }
-                tail={
-                  index === queue.getTail() && !queue.isEmpty() ? TAIL : ""
-                }
+                head={index === queue.getHead() && !queue.isEmpty() ? HEAD : ""}
+                tail={index === queue.getTail() && !queue.isEmpty() ? TAIL : ""}
               />
             </li>
           );
