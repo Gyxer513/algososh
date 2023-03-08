@@ -1,7 +1,7 @@
-import { ElementStates } from "../types/element-states";
-import { swap, timer } from "./utils";
-import { IItemArray } from "../types/utils";
-import { DELAY_IN_MS } from "../constants/delays";
+import { ElementStates } from "../../types/element-states";
+import { swap, timer } from "../../utils/utils";
+import { IItemArray } from "../../types/utils";
+import { DELAY_IN_MS } from "../../constants/delays";
 
 export const reverseArray = async (
   string: Array<IItemArray>,

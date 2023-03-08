@@ -1,5 +1,5 @@
-import { IItemArray } from "../types/utils";
-import { ElementStates } from "../types/element-states";
+import { IItemArray } from "../../types/utils";
+import { ElementStates } from "../../types/element-states";
 
 export type TListElement = IItemArray & {
   head?: boolean;

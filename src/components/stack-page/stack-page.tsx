@@ -4,7 +4,7 @@ import styles from "./stack.module.css";
 import { Input } from "../ui/input/input";
 import { Button } from "../ui/button/button";
 import { Circle } from "../ui/circle/circle";
-import { stack } from "../../utils/stack";
+import { stack } from "./utils";
 import { timer } from "../../utils/utils";
 import { IStackElement } from "../../types/utils";
 import { ElementStates } from "../../types/element-states";
@@ -72,23 +72,23 @@ export const StackPage: React.FC = () => {
           text="Добавить"
           onClick={pushItem}
           disabled={
-            inputValue == "" || activaBtn == "del" || activaBtn == "clear"
+            inputValue === "" || activaBtn === "del" || activaBtn === "clear"
           }
-          isLoader={activaBtn == "push"}
+          isLoader={activaBtn === "push"}
         />
         <Button
           text="Удалить"
           disabled={
-            !array.length || activaBtn == "push" || activaBtn == "clear"
+            !array.length || activaBtn === "push" || activaBtn === "clear"
           }
           onClick={removeItem}
-          isLoader={activaBtn == "del"}
+          isLoader={activaBtn === "del"}
         />
         <Button
           text="Очистить"
-          disabled={!array.length || activaBtn == "del" || activaBtn == "push"}
+          disabled={!array.length || activaBtn === "del" || activaBtn === "push"}
           onClick={clearStack}
-          isLoader={activaBtn == "clear"}
+          isLoader={activaBtn === "clear"}
         />
       </section>
       <ul className={styles.list}>

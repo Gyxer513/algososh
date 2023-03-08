@@ -1,4 +1,4 @@
-import { ElementStates } from "../types/element-states";
+import { ElementStates } from "../../types/element-states";
 interface IQueue<T> {
   enqueue: (item: T) => void;
   dequeue: () => void;

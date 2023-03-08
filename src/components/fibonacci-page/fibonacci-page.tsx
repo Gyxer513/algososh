@@ -4,7 +4,7 @@ import styles from "./fibonacci-page.module.css";
 import { Input } from "../ui/input/input";
 import { Button } from "../ui/button/button";
 import { Circle } from "../ui/circle/circle";
-import { fib } from "../../utils/fibonacci";
+import { fib } from "./utils";
 import { MIN_VALUE, MAX_VALUE } from "../../constants/fiboncci";
 
 export const FibonacciPage: React.FC = () => {

@@ -4,11 +4,11 @@ import styles from "./sorting-page.module.css";
 import { IItemArray } from "../../types/utils";
 import { RadioInput } from "../ui/radio-input/radio-input";
 import { Button } from "../ui/button/button";
-import { getRandomArray } from "../../utils/sort";
+import { getRandomArray } from "./utils";
 import { Direction } from "../../types/direction";
 import { ElementStates } from "../../types/element-states";
 import { Column } from "../ui/column/column";
-import { bubbleSort, selectSort } from "../../utils/sort";
+import { bubbleSort, selectSort } from "./utils";
 
 export const SortingPage: React.FC = () => {
   const [loader, setLoader] = React.useState<boolean>(false);

@@ -1,5 +1,5 @@
-import { SHORT_DELAY_IN_MS } from "../constants/delays";
-import { timer } from "./utils";
+import { SHORT_DELAY_IN_MS } from "../../constants/delays";
+import { timer } from "../../utils/utils";
 
 export const getFibonacciNumbers = (n: number): Array<number> => {
   let arr: number[] = [1, 1];

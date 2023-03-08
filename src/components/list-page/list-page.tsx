@@ -5,7 +5,7 @@ import { Input } from "../ui/input/input";
 import { Button } from "../ui/button/button";
 import { Circle } from "../ui/circle/circle";
 import { ArrowIcon } from "../ui/icons/arrow-icon";
-import { list } from "../../utils/list";
+import { list } from "./utils";
 import { ElementStates } from "../../types/element-states";
 import { Location } from "../../types/utils";
 import { timer } from "../../utils/utils";
@@ -64,14 +64,14 @@ export const ListPage: React.FC = () => {
   const deleteHead = async () => {
     setActivaBtn("delHead");
     setLoader(true);
-    list.deleteHead();
-    setCurrentElement(numbersArray[0].item);
+    setCurrentElement(list.toArray()[0].item);
+    setCurrentIndex(0);
     setCurrentLocation(Location.Bottom);
     numbersArray[0] = {
-      ...numbersArray[0],
+      ...numbersArray[list.toArray().length + 1],
       state: ElementStates.Changing,
     };
-
+    list.deleteHead();
     await timer(SHORT_DELAY_IN_MS);
 
     setNumbersArray(list.toArray());
@@ -114,18 +114,19 @@ export const ListPage: React.FC = () => {
 
   const deleteTail = async () => {
     setActivaBtn("delTail");
-    list.deleteTail();
+    list.deleteTail();   
     setCurrentElement(numbersArray[list.toArray().length].item);
     setCurrentLocation(Location.Bottom);
     setCurrentIndex(list.toArray().length);
     numbersArray[list.toArray().length] = {
-      ...numbersArray[list.toArray().length - 1],
+      ...numbersArray[list.toArray().length + 1],
       state: ElementStates.Changing,
     };
 
     await timer(SHORT_DELAY_IN_MS);
-
     setNumbersArray(list.toArray());
+
+    
     numbersArray[0] = {
       ...numbersArray[0],
       state: ElementStates.Modified,
@@ -155,6 +156,14 @@ export const ListPage: React.FC = () => {
   const removeByIndex = async () => {
     setDisabled(true);
     setLoader(true);
+    for (let i = 0; i <= +indexValue; i++) {
+      numbersArray[i] = {
+        ...numbersArray[i],
+        state: ElementStates.Changing,
+      };
+      setNumbersArray([...numbersArray]);
+      await timer(SHORT_DELAY_IN_MS);
+    }
     list.deleteByIndex(+indexValue);
     setCurrentIndex(+indexValue);
     setCurrentElement(numbersArray[+indexValue].item);
@@ -221,18 +230,18 @@ export const ListPage: React.FC = () => {
             text="Добавить в head"
             onClick={addHead}
             disabled={!inputValue}
-            isLoader={activaBtn == "add"}
+            isLoader={activaBtn === "add"}
           />
           <Button
             text="Добавить в tail"
             disabled={!inputValue}
-            isLoader={activaBtn == "addTail"}
+            isLoader={activaBtn === "addTail"}
             onClick={addTail}
           />
           <Button
             text="Удалить из head"
             disabled={disabled}
-            isLoader={activaBtn == "delHead"}
+            isLoader={activaBtn === "delHead"}
             onClick={deleteHead}
           />
           <Button
@@ -264,7 +273,7 @@ export const ListPage: React.FC = () => {
           <Button
             text="Удалить по индексу"
             extraClass={styles.button}
-            disabled={!(numbersArray.length > +indexValue) || indexValue == ""}
+            disabled={!(numbersArray.length > +indexValue) || indexValue === ""}
             onClick={removeByIndex}
           />
         </div>

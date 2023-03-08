@@ -1,8 +1,8 @@
-import { timer, swap } from "./utils";
-import { IItemArray } from "../types/utils";
-import { ElementStates } from "../types/element-states";
-import { SHORT_DELAY_IN_MS } from "../constants/delays";
-import { Direction } from "../types/direction";
+import { timer, swap } from "../../utils/utils";
+import { IItemArray } from "../../types/utils";
+import { ElementStates } from "../../types/element-states";
+import { SHORT_DELAY_IN_MS } from "../../constants/delays";
+import { Direction } from "../../types/direction";
 
 export const getRandomArray = (
   min = 0,

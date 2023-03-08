@@ -5,7 +5,7 @@ import { Input } from "../ui/input/input";
 import { Button } from "../ui/button/button";
 import { Circle } from "../ui/circle/circle";
 import { IItemArray } from "../../types/utils";
-import { reverseArray } from "../../utils/string";
+import { reverseArray } from "./utils";
 import { ElementStates } from "../../types/element-states";
 
 export const StringComponent: React.FC = () => {

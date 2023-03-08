@@ -5,7 +5,7 @@ import { Input } from "../ui/input/input";
 import { Button } from "../ui/button/button";
 import { Circle } from "../ui/circle/circle";
 import { timer } from "../../utils/utils";
-import { queue, defaultArray } from "../../utils/queue";
+import { queue, defaultArray } from "./utils";
 import { IQueueElement } from "../../types/utils";
 import { ElementStates } from "../../types/element-states";
 import { SHORT_DELAY_IN_MS } from "../../constants/delays";
