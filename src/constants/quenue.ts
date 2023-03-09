@@ -1,0 +1,1 @@
+export const ARRAY_LENGTH = 7
