@@ -16,7 +16,7 @@ import { TAIL, HEAD } from "../../constants/element-captions";
 
 export const ListPage: React.FC = () => {
   const [disabled, setDisabled] = React.useState<boolean>(false);
-  const [activaBtn, setActivaBtn] = React.useState<string>("");
+  const [activeBtn, setActiveBtn] = React.useState<string>("");
   const [inputValue, setInputValue] = React.useState<string>("");
   const [indexValue, setIndexValue] = React.useState<string>("");
   const [currentIndex, setCurrentIndex] = React.useState<number>(0);
@@ -35,7 +35,7 @@ export const ListPage: React.FC = () => {
   };
 
   const addHead = async () => {
-    setActivaBtn("add");
+    setActiveBtn("add");
 
     list.prepend(inputValue);
     setCurrentElement(inputValue);
@@ -55,11 +55,11 @@ export const ListPage: React.FC = () => {
     };
     setCurrentLocation(Location.None);
     setInputValue("");
-    setActivaBtn("");
+    setActiveBtn("");
   };
 
   const deleteHead = async () => {
-    setActivaBtn("delHead");
+    setActiveBtn("delHead");
 
     setCurrentElement(list.toArray()[0].item);
     setCurrentIndex(0);
@@ -82,11 +82,11 @@ export const ListPage: React.FC = () => {
     if (list.toArray().length === 0) {
       setDisabled(true);
     }
-    setActivaBtn("");
+    setActiveBtn("");
   };
 
   const addTail = async () => {
-    setActivaBtn("addTail");
+    setActiveBtn("addTail");
 
     setCurrentElement(inputValue);
     setCurrentIndex(list.toArray().length);
@@ -105,11 +105,11 @@ export const ListPage: React.FC = () => {
     };
     setCurrentLocation(Location.None);
     setInputValue("");
-    setActivaBtn("");
+    setActiveBtn("");
   };
 
   const deleteTail = async () => {
-    setActivaBtn("delTail");
+    setActiveBtn("delTail");
     list.deleteTail();
     setCurrentElement(numbersArray[list.toArray().length].item);
     setCurrentLocation(Location.Bottom);
@@ -126,7 +126,7 @@ export const ListPage: React.FC = () => {
       ...numbersArray[0],
       state: ElementStates.Modified,
     };
-    setActivaBtn("");
+    setActiveBtn("");
     setCurrentLocation(Location.None);
     if (list.toArray().length === 0) {
       setDisabled(true);
@@ -150,7 +150,7 @@ export const ListPage: React.FC = () => {
 
   const removeByIndex = async () => {
     setDisabled(true);
-    setActivaBtn("delByInd");
+    setActiveBtn("delByInd");
     for (let i = 0; i <= +indexValue; i++) {
       numbersArray[i] = {
         ...numbersArray[i],
@@ -175,12 +175,12 @@ export const ListPage: React.FC = () => {
     setNumbersArray(list.toArray());
     setCurrentLocation(Location.None);
     setDisabled(false);
-    setActivaBtn("");
+    setActiveBtn("");
   };
 
   const addByIndex = async () => {
     setDisabled(true);
-    setActivaBtn("delByInd");
+    setActiveBtn("delByInd");
     for (let i = 0; i <= +indexValue; i++) {
       numbersArray[i] = {
         ...numbersArray[i],
@@ -207,7 +207,7 @@ export const ListPage: React.FC = () => {
     setCurrentLocation(Location.None);
     setIndexValue("");
     setDisabled(false);
-    setActivaBtn("");
+    setActiveBtn("");
   };
   return (
     <SolutionLayout title="Связный список">
@@ -225,24 +225,24 @@ export const ListPage: React.FC = () => {
             text="Добавить в head"
             onClick={addHead}
             disabled={!inputValue}
-            isLoader={activaBtn === "add"}
+            isLoader={activeBtn === "add"}
           />
           <Button
             text="Добавить в tail"
             disabled={!inputValue}
-            isLoader={activaBtn === "addTail"}
+            isLoader={activeBtn === "addTail"}
             onClick={addTail}
           />
           <Button
             text="Удалить из head"
             disabled={disabled}
-            isLoader={activaBtn === "delHead"}
+            isLoader={activeBtn === "delHead"}
             onClick={deleteHead}
           />
           <Button
             text="Удалить из tail"
             disabled={disabled}
-            isLoader={activaBtn === "delTail"}
+            isLoader={activeBtn === "delTail"}
             onClick={deleteTail}
           />
         </div>
@@ -264,14 +264,14 @@ export const ListPage: React.FC = () => {
               !(numbersArray.length + 1 > +indexValue)
             }
             onClick={addByIndex}
-            isLoader={activaBtn === "addByInd"}
+            isLoader={activeBtn === "addByInd"}
           />
           <Button
             text="Удалить по индексу"
             extraClass={styles.button}
             disabled={!(numbersArray.length > +indexValue) || indexValue === ""}
             onClick={removeByIndex}
-            isLoader={activaBtn === "delByInd"}
+            isLoader={activeBtn === "delByInd"}
           />
         </div>
       </section>
