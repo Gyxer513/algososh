@@ -7,6 +7,7 @@ import { Circle } from "../ui/circle/circle";
 import { IItemArray } from "../../types/utils";
 import { reverseArray } from "./utils";
 import { ElementStates } from "../../types/element-states";
+import { returner } from "../../utils/utils";
 
 export const StringComponent: React.FC = () => {
   const [disabled, setDisabled] = React.useState<boolean>(true);

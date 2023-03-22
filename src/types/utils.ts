@@ -2,7 +2,7 @@ import { ElementStates } from "./element-states";
 
 export interface IItemArray {
   item: string | number;
-  state: ElementStates;
+  state?: ElementStates;
 }
 
 export interface ISortArray {
@@ -37,4 +37,11 @@ export interface IListElement {
   item: string;
   state: ElementStates;
   head?: boolean;
+}
+
+export interface ITestArray {
+  even: Array<string | number>,
+  notEven: Array<string | number>,
+  one: Array<string | number>,
+  empty: Array<string | number>
 }

@@ -13,3 +13,5 @@ export const swap = (
   arr[secondIndex] = temp;
 };
 
+export const returner = (arg: IItemArray) => arg
+
