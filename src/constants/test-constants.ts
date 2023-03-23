@@ -1,5 +1,7 @@
 import { ElementStates } from "../types/element-states";
 
+export const URL_FOR_TESTS = "http://localhost:3000";
+
 export const array = [
   { item: "1", state: ElementStates.Modified },
   { item: "0", state: ElementStates.Modified },
