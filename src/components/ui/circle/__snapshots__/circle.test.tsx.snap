@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Circle tests Circle Changing 1`] = `
+<Circle
+  state="changing"
+/>
+`;
+
+exports[`Circle tests Circle Default 1`] = `
+<Circle
+  state="default"
+/>
+`;
+
+exports[`Circle tests Circle Modified 1`] = `
+<Circle
+  state="modified"
+/>
+`;
+
+exports[`Circle tests Circle is small 1`] = `
+<Circle
+  isSmall={true}
+/>
+`;
+
+exports[`Circle tests Circle with circle head 1`] = `
+<Circle
+  tail={<Circle />}
+/>
+`;
+
+exports[`Circle tests Circle with head 1`] = `
+<Circle
+  head="a"
+/>
+`;
+
+exports[`Circle tests Circle with index 1`] = `
+<Circle
+  index={0}
+/>
+`;
+
+exports[`Circle tests Circle with letter 1`] = `
+<Circle
+  letter="a"
+/>
+`;
+
+exports[`Circle tests Circle with tail 1`] = `
+<Circle
+  tail="a"
+/>
+`;
+
+exports[`Circle tests Circle with tail head 1`] = `
+<Circle
+  tail={<Circle />}
+/>
+`;
+
+exports[`Circle tests Circle without letter 1`] = `<Circle />`;
