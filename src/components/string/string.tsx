@@ -7,7 +7,7 @@ import { Circle } from "../ui/circle/circle";
 import { IItemArray } from "../../types/utils";
 import { reverseArray } from "./utils";
 import { ElementStates } from "../../types/element-states";
-import { returner } from "../../utils/utils";
+
 
 export const StringComponent: React.FC = () => {
   const [disabled, setDisabled] = React.useState<boolean>(true);
@@ -31,6 +31,8 @@ export const StringComponent: React.FC = () => {
     await reverseArray(inputValue, setInputValue);
     setLoader(false);
   };
+  console.log(inputValue);
+  
 
   return (
     <SolutionLayout title="Строка">
@@ -50,8 +52,7 @@ export const StringComponent: React.FC = () => {
         />
       </section>
       <ul className={styles.list}>
-        {loader &&
-          inputValue?.map((item, index) => {
+        {inputValue?.map((item, index) => {
             return (
               <li key={index}>
                 <Circle letter={`${item.item}`} state={item.state} />

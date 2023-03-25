@@ -4,7 +4,6 @@ describe("app works correctly with routes", function () {
   before(function () {
     cy.visit(URL_FOR_TESTS);
   });
-
   it("Should open recursion page", function () {
     cy.visit(`${URL_FOR_TESTS}/recursion`);
     cy.contains("Строка");
