@@ -1,7 +1,6 @@
 import "@testing-library/jest-dom/extend-expect";
 import { reverseArray } from "./utils";
 import { returner } from "../../utils/utils";
-import { ElementStates } from "../../types/element-states";
 import {
   array,
   reverseEvenArray,
