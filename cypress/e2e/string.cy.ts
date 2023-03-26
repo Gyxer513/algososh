@@ -1,10 +1,10 @@
-import { URL_FOR_TESTS } from "../../src/constants/test-constants";
 import { DELAY_IN_MS } from "../../src/constants/delays";
 import { colors } from "../../src/constants/test-constants";
+import { circleName } from "../../src/constants/test-constants";
 
 describe("Recursion page health check", function () {
   beforeEach(() => {
-    cy.visit(`${URL_FOR_TESTS}/recursion`);
+    cy.visit(`/recursion`);
   });
 
   it("Checking if input is empty, then button should is not available", function () {
@@ -15,7 +15,7 @@ describe("Recursion page health check", function () {
   it("Should correrct reverse string", () => {
     cy.get("input").type("TEST");
     cy.get("button").contains("Развернуть").click();
-    cy.get("[class^=circle_circle]").as("circle");
+    cy.get(circleName).as("circle");
 
     cy.get("@circle")
       .eq(0)

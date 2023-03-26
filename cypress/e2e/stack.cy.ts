@@ -1,10 +1,10 @@
-import { URL_FOR_TESTS } from "../../src/constants/test-constants";
 import { DELAY_IN_MS } from "../../src/constants/delays";
 import { colors } from "../../src/constants/test-constants";
+import { circleName } from "../../src/constants/test-constants";
 
 describe("Stack page health check", function () {
   beforeEach(() => {
-    cy.visit(`${URL_FOR_TESTS}/stack`);
+    cy.visit(`/stack`);
   });
 
   it("Checking if input is empty, then button should is not available", function () {
@@ -15,7 +15,7 @@ describe("Stack page health check", function () {
   it("Should add elements in stack", () => {
     cy.get("input").type("5");
     cy.get("button").contains("Добавить").click();
-    cy.get("[class^=circle_circle]").as("circle");
+    cy.get(circleName).as("circle");
 
     cy.wait(0);
 
@@ -28,7 +28,7 @@ describe("Stack page health check", function () {
   it("Check correct css values", () => {
     cy.get("input").type("5");
     cy.get("button").contains("Добавить").click();
-    cy.get("[class^=circle_circle]").as("circle");
+    cy.get(circleName).as("circle");
 
     cy.wait(0);
 
@@ -56,7 +56,7 @@ describe("Stack page health check", function () {
     cy.get("input").type("5");
     cy.get("button").contains("Добавить").click();
     cy.get("input").type("6");
-    cy.get("[class^=circle_circle]").as("circle");
+    cy.get(circleName).as("circle");
 
     cy.get("@circle")
       .eq(0)
@@ -77,7 +77,7 @@ describe("Stack page health check", function () {
     cy.wait(DELAY_IN_MS);
     cy.get("button").contains("Очистить").click();
 
-    cy.get("[class^=circle_circle]").as("circle");
+    cy.get(circleName).as("circle");
     cy.get("@circle").should("not.exist");
   });
 });

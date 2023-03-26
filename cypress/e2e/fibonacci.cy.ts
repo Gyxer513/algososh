@@ -1,8 +1,9 @@
-import { URL_FOR_TESTS } from "../../src/constants/test-constants";
+
+import { circleName } from "../../src/constants/test-constants";
 
 describe("Fibonacci page health check", function () {
   beforeEach(() => {
-    cy.visit(`${URL_FOR_TESTS}/fibonacci`);
+    cy.visit(`/fibonacci`);
   });
 
   it("Checking if input is empty, then button should is not available", function () {
@@ -13,7 +14,7 @@ describe("Fibonacci page health check", function () {
   it("Should show correct values", () => {
     cy.get("input").type("5");
     cy.get("button").contains("Показать").click();
-    cy.get("[class^=circle_circle]").as("circle");
+    cy.get(circleName).as("circle");
 
     cy.get("@circle").eq(0).should("contain", "1");
     cy.get("@circle").eq(1).should("contain", "1");

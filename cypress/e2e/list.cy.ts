@@ -1,11 +1,10 @@
-import { URL_FOR_TESTS } from "../../src/constants/test-constants";
-import { DELAY_IN_MS } from "../../src/constants/delays";
 import { colors } from "../../src/constants/test-constants";
 import { defaultArray } from "../../src/components/list-page/utils";
+import { circleName } from "../../src/constants/test-constants";
 
 describe("Queue page health check", function () {
   beforeEach(() => {
-    cy.visit(`${URL_FOR_TESTS}/list`);
+    cy.visit(`/list`);
   });
 
   it("Checking if input is empty, then buttons should is not available", function () {
@@ -17,7 +16,7 @@ describe("Queue page health check", function () {
   });
 
   it("Checking correct render start array", function () {
-    cy.get("[class^=circle_circle]").as("circle");
+    cy.get(circleName).as("circle");
 
     cy.get("@circle")
       .eq(0)
@@ -40,7 +39,7 @@ describe("Queue page health check", function () {
   it("Should add element in head", function () {
     cy.get('[data-cy="value-input"]').type("5");
     cy.get("button").contains("Добавить в head").click();
-    cy.get("[class^=circle_circle]").as("circle");
+    cy.get(circleName).as("circle");
 
     cy.get("@circle")
       .eq(0)
@@ -67,7 +66,7 @@ describe("Queue page health check", function () {
   it("Should add element in tail", function () {
     cy.get('[data-cy="value-input"]').type("5");
     cy.get("button").contains("Добавить в tail").click();
-    cy.get("[class^=circle_circle]").as("circle");
+    cy.get(circleName).as("circle");
 
     cy.get("@circle")
       .eq(0)
@@ -96,7 +95,7 @@ describe("Queue page health check", function () {
     cy.get('[data-cy="index-input"]').type("1");
     cy.get("button").contains("Добавить по индексу").click();
 
-    cy.get("[class^=circle_circle]").as("circle");
+    cy.get(circleName).as("circle");
 
     cy.get("@circle")
       .eq(0)
@@ -122,7 +121,7 @@ describe("Queue page health check", function () {
 
   it("Should delete element in head", function () {
     cy.get("button").contains("Удалить из head").click();
-    cy.get("[class^=circle_circle]").as("circle");
+    cy.get(circleName).as("circle");
 
     cy.get("@circle")
       .eq(0)
@@ -140,7 +139,7 @@ describe("Queue page health check", function () {
 
   it("Should вудуеу element in tail", function () {
     cy.get("button").contains("Удалить из tail").click();
-    cy.get("[class^=circle_circle]").as("circle");
+    cy.get(circleName).as("circle");
 
     cy.get("@circle")
       .eq(0)
@@ -161,7 +160,7 @@ describe("Queue page health check", function () {
     cy.get('[data-cy="index-input"]').type("1");
     cy.get("button").contains("Удалить по индексу").click();
 
-    cy.get("[class^=circle_circle]").as("circle");
+    cy.get(circleName).as("circle");
 
     cy.get("@circle")
       .eq(0)

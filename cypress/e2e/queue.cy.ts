@@ -1,17 +1,18 @@
-import { URL_FOR_TESTS } from "../../src/constants/test-constants";
+
 import { DELAY_IN_MS } from "../../src/constants/delays";
 import { colors } from "../../src/constants/test-constants";
 
+
 describe("Queue page health check", function () {
   beforeEach(() => {
-    cy.visit(`${URL_FOR_TESTS}/stack`);
+    cy.visit(`/stack`);
   });
 
   it("Checking if input is empty, then button should is not available", function () {
     cy.get("input").should("be.empty");
     cy.get("button").should("be.disabled");
   });
-  
+
   it("Should add element in queue", function () {
     cy.get("input").type("5");
     cy.get("button").contains("Добавить").click();

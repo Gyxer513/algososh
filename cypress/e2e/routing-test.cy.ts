@@ -1,31 +1,30 @@
-import { URL_FOR_TESTS } from "../../src/constants/test-constants";
 
 describe("app works correctly with routes", function () {
   before(function () {
-    cy.visit(URL_FOR_TESTS);
+    cy.visit('/');
   });
   it("Should open recursion page", function () {
-    cy.visit(`${URL_FOR_TESTS}/recursion`);
+    cy.visit(`/recursion`);
     cy.contains("Строка");
   });
   it("Should open fibonacci page", function () {
-    cy.visit(`${URL_FOR_TESTS}/fibonacci`);
+    cy.visit(`/fibonacci`);
     cy.contains("Последовательность Фибоначчи");
   });
   it("Should open sorting page", function () {
-    cy.visit(`${URL_FOR_TESTS}/sorting`);
+    cy.visit(`/sorting`);
     cy.contains("Сортировка массива");
   });
   it("Should open stack page", function () {
-    cy.visit(`${URL_FOR_TESTS}/stack`);
+    cy.visit(`/stack`);
     cy.contains("Стек");
   });
   it("Should open queue page", function () {
-    cy.visit(`${URL_FOR_TESTS}/queue`);
+    cy.visit(`/queue`);
     cy.contains("Очередь");
   });
   it("Should open list page", function () {
-    cy.visit(`${URL_FOR_TESTS}/list`);
+    cy.visit(`/list`);
     cy.contains("Связный список");
   });
 });

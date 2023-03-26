@@ -57,3 +57,5 @@ export const colors = {
   changing: "4px solid rgb(210, 82, 225)",
   modified: "4px solid rgb(127, 224, 81)",
 };
+
+export const circleName = "[class^=circle_circle]"
