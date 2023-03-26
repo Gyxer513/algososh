@@ -220,30 +220,35 @@ export const ListPage: React.FC = () => {
             isLimitText={true}
             maxLength={MAX_LENGTH}
             placeholder={"Введите значение"}
+            data-cy="value-input"
           />
           <Button
             text="Добавить в head"
             onClick={addHead}
             disabled={!inputValue}
             isLoader={activeBtn === "add"}
+            data-cy="button-add-head"
           />
           <Button
             text="Добавить в tail"
             disabled={!inputValue}
             isLoader={activeBtn === "addTail"}
             onClick={addTail}
+            data-cy="button-add-tail"
           />
           <Button
             text="Удалить из head"
             disabled={disabled}
             isLoader={activeBtn === "delHead"}
             onClick={deleteHead}
+            data-cy="button-delete-head"
           />
           <Button
             text="Удалить из tail"
             disabled={disabled}
             isLoader={activeBtn === "delTail"}
             onClick={deleteTail}
+            data-cy="button-delete-tail"
           />
         </div>
         <div className={styles.listContainer}>
@@ -254,6 +259,7 @@ export const ListPage: React.FC = () => {
             min="0"
             max={numbersArray.length - 1}
             value={indexValue}
+            data-cy="index-input"
           />
           <Button
             text="Добавить по индексу"
@@ -265,6 +271,7 @@ export const ListPage: React.FC = () => {
             }
             onClick={addByIndex}
             isLoader={activeBtn === "addByInd"}
+            data-cy="button-add-by-index"
           />
           <Button
             text="Удалить по индексу"
@@ -272,6 +279,7 @@ export const ListPage: React.FC = () => {
             disabled={!(numbersArray.length > +indexValue) || indexValue === ""}
             onClick={removeByIndex}
             isLoader={activeBtn === "delByInd"}
+            data-cy="button-delete-by-index"
           />
         </div>
       </section>

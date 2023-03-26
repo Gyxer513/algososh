@@ -12,7 +12,7 @@ describe("Queue page health check", function () {
     cy.get("button").should("be.disabled");
   });
   
-  it("Should add elements in queue", function () {
+  it("Should add element in queue", function () {
     cy.get("input").type("5");
     cy.get("button").contains("Добавить").click();
     cy.get("[class^=circle_circle]").as("circle");
