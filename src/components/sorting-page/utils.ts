@@ -52,6 +52,7 @@ export const selectSort = async (
     swap(arr, i, index);
     func([...arr]);
   }
+ return [...arr]
 };
 
 export const bubbleSort = async (
@@ -83,5 +84,5 @@ export const bubbleSort = async (
     arr[length - i - 1].state = ElementStates.Modified;
     func([...arr]);
   }
-  func([...arr]);
+return [...arr]
 };

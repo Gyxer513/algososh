@@ -21,6 +21,7 @@ export const reverseArray = async (
     string[start].state = ElementStates.Modified;
     string[end].state = ElementStates.Modified;
     swap(string, start, end);
+    
     setArray([...string]);
 
     await timer(DELAY_IN_MS);
@@ -28,4 +29,5 @@ export const reverseArray = async (
     start++;
     end--;
   }
+  return [...string]
 };

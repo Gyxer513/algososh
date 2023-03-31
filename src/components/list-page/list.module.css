@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  margin: 0 150px 0 400px;
+  align-items: center;
 }
 .listContainer {
   display: flex;
